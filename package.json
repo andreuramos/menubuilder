@@ -1,0 +1,19 @@
+{
+  "name": "menubuilder",
+  "version": "1.0.0",
+  "description": "node api to build weekly menu",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/andreuramos/menubuilder.git"
+  },
+  "author": "Andreu Ramos <andreu.ramos.amengual@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/andreuramos/menubuilder/issues"
+  },
+  "homepage": "https://github.com/andreuramos/menubuilder#readme"
+}
