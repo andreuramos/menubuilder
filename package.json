@@ -2,8 +2,9 @@
   "name": "menubuilder",
   "version": "1.0.0",
   "description": "node api to build weekly menu",
-  "main": "index.js",
+  "main": "dist/app.js",
   "scripts": {
+    "start": "tsc && node dist/app.js",
     "test": "jest"
   },
   "repository": {
@@ -15,5 +16,13 @@
   "bugs": {
     "url": "https://github.com/andreuramos/menubuilder/issues"
   },
-  "homepage": "https://github.com/andreuramos/menubuilder#readme"
+  "homepage": "https://github.com/andreuramos/menubuilder#readme",
+  "devDependencies": {
+    "@types/express": "^4.16.1",
+    "tslint": "^5.12.1",
+    "typescript": "^3.3.3"
+  },
+  "dependencies": {
+    "express": "^4.16.4"
+  }
 }
