@@ -1,4 +1,5 @@
 import express from "express";
+import {MenuFactory} from "../menubuilder/services/MenuFactory";
 
 export class MenuController {
 
@@ -12,7 +13,14 @@ export class MenuController {
 
     private static instance;
 
+    private menuFactory;
+
+    constructor() {
+        this.menuFactory = new MenuFactory();
+    }
+
     public build(req: express.Request, res: express.Response) {
-        res.send("Here you have your menu sir");
+        const menu = this.menuFactory.execute();
+        res.status(200).send(JSON.stringify(menu));
     }
 }

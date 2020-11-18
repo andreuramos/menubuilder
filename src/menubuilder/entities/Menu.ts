@@ -27,4 +27,9 @@ export class Menu
             friday: this.fridayDish,
         };
     }
+
+    public toJSON()
+    {
+        return this.dishes();
+    }
 }
