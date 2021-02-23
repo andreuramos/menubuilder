@@ -1,5 +1,5 @@
 import {Menu} from "../entities/Menu";
-import {InterfaceDishRepository} from "../interfaces/InterfaceDishRepository";
+import {IDishRepository} from "../interfaces/IDishRepository";
 
 const CATEGORIES = [
     "pescado", "carne", "legumbre", "pasta", "verdura",
@@ -9,7 +9,7 @@ export class MenuFactory
 {
     private dishRepository;
 
-    constructor(dishRepository: InterfaceDishRepository) {
+    constructor(dishRepository: IDishRepository) {
         this.dishRepository = dishRepository;
     }
 

@@ -1,12 +1,12 @@
 import {Dish} from "../entities/Dish";
 import {Menu} from "../entities/Menu";
 import {PostgresDishRepository} from "../external/PostgresDishRepository";
-import {InterfaceDishRepository} from "../interfaces/InterfaceDishRepository";
+import {IDishRepository} from "../interfaces/IDishRepository";
 import {MenuFactory} from "./MenuFactory";
 
 describe("Menu Factory", () => {
     it ("Returns a menu", () => {
-        const dishRepository: InterfaceDishRepository = {
+        const dishRepository: IDishRepository = {
             getRandomByCategory(category: string): Dish {
                 return new Dish("dish_name", category);
             },
@@ -19,7 +19,7 @@ describe("Menu Factory", () => {
     });
 
     it ("Contains Dishes", () => {
-        const dishRepository: InterfaceDishRepository = {
+        const dishRepository: IDishRepository = {
             getRandomByCategory(category: string): Dish {
                 return new Dish("dish_name", category);
             },

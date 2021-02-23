@@ -1,6 +1,6 @@
 import {Dish} from "../entities/Dish";
 
-export interface InterfaceDishRepository
+export interface IDishRepository
 {
     getRandomByCategory(category: string): Dish;
 }
