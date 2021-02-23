@@ -1,5 +1,5 @@
 import express from "express";
-import {PostgresDishRepository} from "../menubuilder/external/PostgresDishRepository";
+import {PgDishRepository} from "../menubuilder/external/PgDishRepository";
 import {MenuFactory} from "../menubuilder/services/MenuFactory";
 
 export class MenuController {
@@ -17,7 +17,7 @@ export class MenuController {
     private menuFactory;
 
     constructor() {
-        this.menuFactory = new MenuFactory(new PostgresDishRepository());
+        this.menuFactory = new MenuFactory(new PgDishRepository());
     }
 
     public build(req: express.Request, res: express.Response) {

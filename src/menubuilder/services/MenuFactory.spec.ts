@@ -1,6 +1,6 @@
 import {Dish} from "../entities/Dish";
 import {Menu} from "../entities/Menu";
-import {PostgresDishRepository} from "../external/PostgresDishRepository";
+import {PgDishRepository} from "../external/PgDishRepository";
 import {IDishRepository} from "../interfaces/IDishRepository";
 import {MenuFactory} from "./MenuFactory";
 
