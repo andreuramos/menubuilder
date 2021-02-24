@@ -20,8 +20,9 @@ export class MenuController {
         this.menuFactory = new MenuFactory(new PgDishRepository());
     }
 
-    public build(req: express.Request, res: express.Response) {
-        const menu = this.menuFactory.execute();
-        res.status(200).send(JSON.stringify(menu));
+    public async build(req: express.Request, res: express.Response) {
+        await this.menuFactory.execute().then((menu) => {
+            res.status(200).send(JSON.stringify(menu));
+        });
     }
 }

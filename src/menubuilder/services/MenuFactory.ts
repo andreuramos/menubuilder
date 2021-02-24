@@ -13,14 +13,22 @@ export class MenuFactory
         this.dishRepository = dishRepository;
     }
 
-    public execute(): Menu
+    public async execute(): Promise<Menu>
     {
         const menu = new Menu();
-        CATEGORIES.forEach((category, index) => {
-            const dish = this.dishRepository.getRandomByCategory(category);
-            const weekday = this.mapIndexToWeekday(index);
-            menu.addDish(dish, weekday);
-        });
+        return this.buildMenu(menu);
+    }
+
+    private buildMenu = async (menu) => {
+        for ( let index = 0; index < CATEGORIES.length; index++) {
+            const category = CATEGORIES[index];
+            await this.dishRepository.getRandomByCategory(category)
+                .then( (dish) => {
+                    const weekday = this.mapIndexToWeekday(index);
+                    menu.addDish(dish, weekday);
+                });
+        }
+
         return menu;
     }
 
