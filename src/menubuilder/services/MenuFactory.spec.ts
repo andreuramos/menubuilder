@@ -9,6 +9,9 @@ describe("Menu Factory", () => {
             async getRandomByCategory(category: string): Promise<Dish> {
                 return new Dish(1, "dish_name", category);
             },
+            async add(data: object): Promise<void> {
+                return null;
+            },
         };
         const factory = new MenuFactory(dishRepository);
 
@@ -21,6 +24,9 @@ describe("Menu Factory", () => {
         const dishRepository: IDishRepository = {
             async getRandomByCategory(category: string): Promise<Dish> {
                 return new Dish(2, "dish_name", category);
+            },
+            async add(data: object): Promise<void> {
+                return null;
             },
         };
         const factory = new MenuFactory(dishRepository);

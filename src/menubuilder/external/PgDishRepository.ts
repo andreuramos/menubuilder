@@ -28,4 +28,9 @@ export class PgDishRepository implements IDishRepository
 
         return PgDishRepository.ormToEntity(dish);
     }
+
+    public async add(dishData: object): Promise<void> {
+        await getConnection().getRepository(ORMDish)
+            .insert(dishData);
+    }
 }

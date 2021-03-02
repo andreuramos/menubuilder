@@ -22,6 +22,7 @@ export class MenuController {
 
     public async build(req: express.Request, res: express.Response) {
         await this.menuFactory.execute().then((menu) => {
+            res.setHeader("Content-Type", "application/json");
             res.status(200).send(JSON.stringify(menu));
         });
     }
