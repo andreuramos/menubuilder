@@ -14,7 +14,7 @@ export class Menu
             case "tuesday": this.tuesdayDish = dish; break;
             case "wednesday": this.wednesdayDish = dish; break;
             case "thursday": this.thursdayDish = dish; break;
-            case "saturday": this.fridayDish = dish; break;
+            case "friday": this.fridayDish = dish; break;
         }
     }
 
