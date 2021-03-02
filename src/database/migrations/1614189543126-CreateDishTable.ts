@@ -4,7 +4,7 @@ export class CreateDishTable1614189543126 implements MigrationInterface {
 
     public async up(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.query("CREATE TABLE IF NOT EXISTS orm_dish (" +
-            "id integer PRIMARY KEY," +
+            "id SERIAL PRIMARY KEY," +
             "name varchar(100)," +
             "category varchar(25)" +
             ");");
