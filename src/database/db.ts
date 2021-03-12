@@ -1,6 +1,6 @@
 import "reflect-metadata";
 import {createConnection} from "typeorm";
-import {ORMDish} from "../menubuilder/external/entities/ORMDish";
+import {Dishes} from "../menubuilder/external/entities/Dishes";
 
 export async function initializeDB(): Promise<void> {
     await createConnection({
@@ -10,7 +10,7 @@ export async function initializeDB(): Promise<void> {
         username: "menubuilder",
         password: "menubuilder",
         database: "menubuilder",
-        entities: [ORMDish],
+        entities: [Dishes],
     });
 }
 

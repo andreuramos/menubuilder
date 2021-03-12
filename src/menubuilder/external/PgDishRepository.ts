@@ -1,11 +1,11 @@
 import {getConnection} from "typeorm";
 import {Dish} from "../entities/Dish";
 import {IDishRepository} from "../interfaces/IDishRepository";
-import {ORMDish} from "./entities/ORMDish";
+import {Dishes} from "./entities/Dishes";
 
 export class PgDishRepository implements IDishRepository
 {
-    private static ormToEntity(dish: ORMDish): Dish {
+    private static ormToEntity(dish: Dishes): Dish {
         return new Dish(
             dish.id,
             dish.name,
@@ -16,7 +16,7 @@ export class PgDishRepository implements IDishRepository
     public async getRandomByCategory(category: string): Promise<Dish> {
 
         const dish = await getConnection()
-            .getRepository(ORMDish)
+            .getRepository(Dishes)
             .createQueryBuilder("dish")
             .where("dish.category = :category", {category} )
             .orderBy("RANDOM()")
@@ -30,7 +30,7 @@ export class PgDishRepository implements IDishRepository
     }
 
     public async add(dishData: object): Promise<void> {
-        await getConnection().getRepository(ORMDish)
+        await getConnection().getRepository(Dishes)
             .insert(dishData);
     }
 }

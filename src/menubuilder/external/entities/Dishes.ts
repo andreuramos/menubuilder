@@ -1,7 +1,7 @@
 import {Column, Entity, PrimaryGeneratedColumn} from "typeorm";
 
 @Entity()
-export class ORMDish
+export class Dishes
 {
     @PrimaryGeneratedColumn()
     public id: number;
