@@ -1,6 +1,5 @@
 import express from "express";
-import {PgDishRepository} from "../menubuilder/external/PgDishRepository";
-import {MenuFactory} from "../menubuilder/services/MenuFactory";
+import {BuildMenu} from "../menubuilder/services/BuildMenu";
 
 export class MenuController {
 
@@ -14,14 +13,14 @@ export class MenuController {
 
     private static instance;
 
-    private menuFactory;
+    private buildMenu;
 
     constructor() {
-        this.menuFactory = new MenuFactory(new PgDishRepository());
+        this.buildMenu = new BuildMenu();
     }
 
     public async build(req: express.Request, res: express.Response) {
-        await this.menuFactory.execute().then((menu) => {
+        await this.buildMenu.execute().then((menu) => {
             res.setHeader("Content-Type", "application/json");
             res.status(200).send(JSON.stringify(menu));
         });
