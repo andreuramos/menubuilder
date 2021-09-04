@@ -11,4 +11,9 @@ export class Category
         }
         this.name = name;
     }
+
+    public getName(): string
+    {
+        return this.name;
+    }
 }
