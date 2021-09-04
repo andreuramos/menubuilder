@@ -1,3 +1,4 @@
+import {Category} from "../entities/Category";
 import {IDishRepository} from "../interfaces/IDishRepository";
 
 export class CreateDish {
@@ -8,11 +9,12 @@ export class CreateDish {
         this.dishRepository = dishRepository;
     }
 
-    public async execute(name: string, category: string): Promise<void>
+    public async execute(name: string, category: Category): Promise<void>
     {
+        const categoryName = category.getName();
         const dishData = {
             name,
-            category,
+            categoryName,
         };
         this.dishRepository.add(dishData);
     }

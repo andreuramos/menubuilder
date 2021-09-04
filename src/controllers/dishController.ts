@@ -1,4 +1,5 @@
 import express from "express";
+import {Category} from "../menubuilder/entities/Category";
 import {PgDishRepository} from "../menubuilder/external/PgDishRepository";
 import {CreateDish} from "../menubuilder/services/CreateDish";
 
@@ -21,7 +22,7 @@ export class DishController {
     public async add(req: express.Request, res: express.Response) {
         await this.createDish.execute(
             req.body.name,
-            req.body.category,
+            new Category(req.body.category),
         ).then(() => {
             res.status(200).send("OK");
         });
