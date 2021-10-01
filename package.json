@@ -4,11 +4,14 @@
   "description": "node api to build weekly menu",
   "main": "dist/app.js",
   "scripts": {
-    "start": "tsc && node dist/app.js",
+    "start": "node dist/app.js",
     "watch": "tsc --watch",
     "test": "npx jest",
     "typeorm": "node --require ts-node/register ./node_modules/typeorm/cli.js",
-    "generate": "tsc && node dist/controllers/cli/generate_menu.js"
+    "help": "node dist/controllers/cli/help.js",
+    "generate": "node dist/controllers/cli/generate_menu.js",
+    "add": "node dist/controllers/cli/add_dish.js",
+    "build": "tsc"
   },
   "repository": {
     "type": "git",
