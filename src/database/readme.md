@@ -13,3 +13,6 @@ https://typeorm.io/#/migrations/creating-a-new-migration
 ## Run migrations
 
  ` > npm run typeorm migration:run`
+
+## Rollback
+ ` > npm run typeorm migration:revert`
