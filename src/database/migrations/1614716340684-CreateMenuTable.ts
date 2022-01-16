@@ -19,7 +19,7 @@ export class CreateMenuTable1614716340684 implements MigrationInterface {
 
     public async down(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.query("DROP TABLE IF EXISTS dishes_menus;");
-        await queryRunner.query("DROP TABLE IF EXISTS dishes_menus;");
+        await queryRunner.query("DROP TABLE IF EXISTS menus;");
     }
 
 }
