@@ -15,16 +15,13 @@ export class MenuController {
     private static instance;
 
     private buildMenu;
-    private menuRepository;
 
     constructor() {
         this.buildMenu = new BuildMenu();
-        this.menuRepository = new PgMenuRepository();
     }
 
     public async build(req: express.Request, res: express.Response) {
         await this.buildMenu.execute().then(async (menu) => {
-            await this.menuRepository.save(menu);
             res.setHeader("Content-Type", "application/json");
             res.status(200).send(JSON.stringify(menu));
         });
