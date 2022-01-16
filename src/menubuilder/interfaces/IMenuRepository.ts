@@ -4,4 +4,5 @@ export interface IMenuRepository
 {
     save(menu: Menu): void;
     getByWeekNumber(weekNumber: number): Promise<Menu>;
+    delete(menu: Menu): void;
 }

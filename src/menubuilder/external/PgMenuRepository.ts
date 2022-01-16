@@ -55,6 +55,27 @@ export class PgMenuRepository implements IMenuRepository
         return menu;
     }
 
+    public async delete(menu: Menu)
+    {
+        const week = menu.getWeekNumber();
+        const dbMenu = await getConnection().getRepository(Menus)
+            .createQueryBuilder("menu")
+            .where("menu.weeknumber = :week", {week})
+            .getOne();
+        await getConnection()
+            .createQueryBuilder()
+            .delete()
+            .from(DishesMenus)
+            .where("menuid = :menuId", {menuId: dbMenu.id})
+            .execute();
+        await getConnection()
+            .createQueryBuilder()
+            .delete()
+            .from(Menus)
+            .where("id = :id", {id: dbMenu.id})
+            .execute();
+    }
+
     private ormToEntity(dbMenu: Menus): Menu
     {
         const menu = new Menu();
