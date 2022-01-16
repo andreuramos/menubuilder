@@ -14,6 +14,9 @@ app.get("/", (req, res) => {
 app.get("/menu", (req: express.Request, res: express.Response) => {
     MenuController.getInstance().build(req, res);
 });
+app.get("/menu/:year/:week", (req: express.Request, res: express.Response) => {
+    MenuController.getInstance().get(req, res);
+});
 
 app.post("/dish", (req: express.Request, res: express.Response) => {
     DishController.getInstance().add(req, res);
