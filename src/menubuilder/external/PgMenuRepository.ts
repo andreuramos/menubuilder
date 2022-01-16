@@ -4,14 +4,18 @@ import {IMenuRepository} from "../interfaces/IMenuRepository";
 import {WeekCalculator} from "../services/WeekCalculator";
 import {DishesMenus} from "./entities/DishesMenus";
 import {Menus} from "./entities/Menus";
+import {PgDishRepository} from "./PgDishRepository";
 
 export class PgMenuRepository implements IMenuRepository
 {
     private weekCalculator;
+    private dishRepository;
 
     public constructor() {
         this.weekCalculator = new WeekCalculator();
+        this.dishRepository = new PgDishRepository();
     }
+
     public async save(menu: Menu) {
         const timestamp = new Date();
         const dbMenu = {
@@ -26,11 +30,35 @@ export class PgMenuRepository implements IMenuRepository
         await this.linkDishes(insertResult.identifiers[0].id, menu.dishes());
     }
 
+    public async getByWeekNumber(weekNumber: number): Promise<Menu>
+    {
+        const dbMenu = await getConnection().getRepository(Menus)
+            .createQueryBuilder("menu")
+            .where("menu.weeknumber = :weekNumber", {weekNumber} )
+            .getOne();
+        if (!dbMenu) {
+            return null;
+        }
+        const menuId = dbMenu.id;
+        const menu = this.ormToEntity(dbMenu);
+
+        const dishesMenus = await getConnection().getRepository(DishesMenus)
+            .createQueryBuilder("dishesmenus")
+            .where("dishesmenus.menuid = :menuId", {menuId})
+            .getMany();
+
+        await Promise.all(dishesMenus.map( async (dishmenu) => {
+            const dish = await this.dishRepository.getById(dishmenu.dishid);
+            menu.addDish(dish, dishmenu.menuslot);
+        }));
+
+        return menu;
+    }
+
     private ormToEntity(dbMenu: Menus): Menu
     {
         const menu = new Menu();
-        menu.setWeekNumber(this.weekCalculator.execute(new Date(dbMenu.createdat)));
-
+        menu.setWeekNumber(dbMenu.weeknumber);
         return menu;
     }
 

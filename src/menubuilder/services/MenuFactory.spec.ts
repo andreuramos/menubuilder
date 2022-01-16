@@ -13,6 +13,9 @@ describe("Menu Factory", () => {
             async add(data: object): Promise<void> {
                 return null;
             },
+            async getById(id: number): Promise<Dish> {
+                return new Dish(1, "name", "category");
+            },
         };
         const factory = new MenuFactory(dishRepository, new WeekCalculator());
 
@@ -28,6 +31,9 @@ describe("Menu Factory", () => {
             },
             async add(data: object): Promise<void> {
                 return null;
+            },
+            async getById(id: number): Promise<Dish> {
+                return new Dish(1, "name", "category");
             },
         };
         const factory = new MenuFactory(dishRepository, new WeekCalculator());

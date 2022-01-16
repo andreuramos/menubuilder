@@ -13,6 +13,19 @@ export class PgDishRepository implements IDishRepository
         );
     }
 
+    public async getById(id: number): Promise<Dish>
+    {
+        const dish = await getConnection().getRepository(Dishes)
+            .createQueryBuilder("dish")
+            .where("dish.id = :id", {id})
+            .getOne();
+        if (!dish) {
+            return null;
+        }
+
+        return PgDishRepository.ormToEntity(dish);
+    }
+
     public async getRandomByCategory(category: string): Promise<Dish> {
 
         const dish = await getConnection()

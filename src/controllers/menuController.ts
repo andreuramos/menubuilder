@@ -1,6 +1,7 @@
 import express from "express";
 import {PgMenuRepository} from "../menubuilder/external/PgMenuRepository";
 import {BuildMenu} from "../menubuilder/services/BuildMenu";
+import {GetMenu} from "../menubuilder/services/GetMenu";
 
 export class MenuController {
 
@@ -15,9 +16,11 @@ export class MenuController {
     private static instance;
 
     private buildMenu;
+    private getMenu;
 
     constructor() {
         this.buildMenu = new BuildMenu();
+        this.getMenu = new GetMenu();
     }
 
     public async build(req: express.Request, res: express.Response) {
@@ -28,8 +31,7 @@ export class MenuController {
     }
 
     public async get(req: express.Request, res: express.Response) {
-        console.log(req.params.year);
-        console.log(req.params.week);
-        res.status(200).send(JSON.stringify("NOTHING FOUND BITCH"));
+        const menu = await this.getMenu.execute();
+        res.status(200).send(JSON.stringify(menu));
     }
 }
