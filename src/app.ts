@@ -11,10 +11,10 @@ app.use(bodyParser.urlencoded({ extended: true}));
 app.get("/", (req, res) => {
     res.send("Ratamahatta");
 });
-app.get("/menu", (req: express.Request, res: express.Response) => {
+app.post("/menu", (req: express.Request, res: express.Response) => {
     MenuController.getInstance().build(req, res);
 });
-app.get("/menu/:year/:week", (req: express.Request, res: express.Response) => {
+app.get("/menu", (req: express.Request, res: express.Response) => {
     MenuController.getInstance().get(req, res);
 });
 
