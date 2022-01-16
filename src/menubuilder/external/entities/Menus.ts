@@ -6,9 +6,12 @@ export class Menus
     @PrimaryGeneratedColumn()
     public id: number;
 
-    @Column("timestamp")
-    public createdAt: Date;
+    @Column("integer")
+    public weeknumber: number;
 
     @Column("timestamp")
-    public updatedAt: Date;
+    public createdat: Date;
+
+    @Column("timestamp")
+    public updatedat: Date;
 }
