@@ -2,6 +2,7 @@ import {Dish} from "../entities/Dish";
 import {Menu} from "../entities/Menu";
 import {IDishRepository} from "../interfaces/IDishRepository";
 import {MenuFactory} from "./MenuFactory";
+import {WeekCalculator} from "./WeekCalculator";
 
 describe("Menu Factory", () => {
     it ("Returns a menu", () => {
@@ -13,7 +14,7 @@ describe("Menu Factory", () => {
                 return null;
             },
         };
-        const factory = new MenuFactory(dishRepository);
+        const factory = new MenuFactory(dishRepository, new WeekCalculator());
 
         factory.execute().then( (menu) => {
             expect(menu).toBeInstanceOf(Menu);
@@ -29,7 +30,7 @@ describe("Menu Factory", () => {
                 return null;
             },
         };
-        const factory = new MenuFactory(dishRepository);
+        const factory = new MenuFactory(dishRepository, new WeekCalculator());
 
         factory.execute().then( (menu) => {
             expect(menu.dishes().monday).toBeInstanceOf(Dish);

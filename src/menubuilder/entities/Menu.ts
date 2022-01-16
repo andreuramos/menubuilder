@@ -7,6 +7,7 @@ export class Menu
     private wednesdayDish: Dish;
     private thursdayDish: Dish;
     private fridayDish: Dish;
+    private weekNumber: number;
 
     public addDish(dish: Dish, weekday: string) {
         switch (weekday) {
@@ -26,5 +27,13 @@ export class Menu
             thursday: this.thursdayDish,
             friday: this.fridayDish,
         };
+    }
+
+    public setWeekNumber(week: number) {
+        this.weekNumber = week;
+    }
+
+    public getWeekNumber() {
+        return this.weekNumber;
     }
 }

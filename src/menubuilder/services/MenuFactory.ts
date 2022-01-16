@@ -1,5 +1,6 @@
 import {Menu} from "../entities/Menu";
 import {IDishRepository} from "../interfaces/IDishRepository";
+import {WeekCalculator} from "./WeekCalculator";
 
 const CATEGORIES = [
     "pescado", "carne", "legumbre", "pasta", "verdura",
@@ -8,9 +9,11 @@ const CATEGORIES = [
 export class MenuFactory
 {
     private dishRepository;
+    private weekCalculator;
 
-    constructor(dishRepository: IDishRepository) {
+    constructor(dishRepository: IDishRepository, weekCalculator: WeekCalculator) {
         this.dishRepository = dishRepository;
+        this.weekCalculator = weekCalculator;
     }
 
     public async execute(): Promise<Menu>
@@ -28,6 +31,7 @@ export class MenuFactory
                     menu.addDish(dish, weekday);
                 });
         }
+        menu.setWeekNumber(this.weekCalculator.execute());
 
         return menu;
     }
