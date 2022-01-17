@@ -2,6 +2,7 @@ import bodyParser from "body-parser";
 import express from "express";
 import {DishController} from "./controllers/dishController";
 import { MenuController } from "./controllers/menuController";
+import {ReplaceDishController} from "./controllers/replaceDishController";
 import {initializeDB} from "./database/db";
 const app = express();
 const port = 3000;
@@ -13,6 +14,9 @@ app.get("/", (req, res) => {
 });
 app.post("/menu", (req: express.Request, res: express.Response) => {
     MenuController.getInstance().build(req, res);
+});
+app.put("/menu/replace/:slot", (req: express.Request, res: express.Response) => {
+    ReplaceDishController.getInstance().execute(req, res);
 });
 app.get("/menu", (req: express.Request, res: express.Response) => {
     MenuController.getInstance().get(req, res);
