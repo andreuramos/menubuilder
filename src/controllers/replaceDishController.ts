@@ -25,11 +25,11 @@ export class ReplaceDishController
         this.replaceDish = new ReplaceDish(new PgDishRepository(), new PgMenuRepository());
     }
 
-    public execute(req: express.Request, res: express.Response)
+    public async execute(req: express.Request, res: express.Response)
     {
         const slot = req.params.slot;
-        const menu = this.getMenu.execute();
-        const updatedMenu = this.replaceDish.execute(menu, slot);
+        const menu = await this.getMenu.execute();
+        const updatedMenu = await this.replaceDish.execute(menu, slot);
         res.send(JSON.stringify(updatedMenu));
     }
 }
