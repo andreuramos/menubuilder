@@ -16,20 +16,21 @@ export class ReplaceDishController
 
     private static instance;
 
-    private getMenu;
     private replaceDish;
 
     public constructor()
     {
-        this.getMenu = new GetMenu();
-        this.replaceDish = new ReplaceDish(new PgDishRepository(), new PgMenuRepository());
+        this.replaceDish = new ReplaceDish(
+            new GetMenu(),
+            new PgDishRepository(),
+            new PgMenuRepository(),
+        );
     }
 
     public async execute(req: express.Request, res: express.Response)
     {
         const slot = req.params.slot;
-        const menu = await this.getMenu.execute();
-        const updatedMenu = await this.replaceDish.execute(menu, slot);
+        const updatedMenu = await this.replaceDish.execute(slot);
         res.send(JSON.stringify(updatedMenu));
     }
 }
