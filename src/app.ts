@@ -10,7 +10,7 @@ const port = 3000;
 app.use(bodyParser.urlencoded({ extended: true}));
 
 app.get("/", (req, res) => {
-    res.send("Ratamahatta");
+    res.send("Ratamahatta"); // TODO: serve the front here
 });
 app.post("/menu", (req: express.Request, res: express.Response) => {
     MenuController.getInstance().build(req, res);
