@@ -1,13 +1,13 @@
 import {initializeDB} from "../../database/db";
+import {Container} from "../../menubuilder/application/Container";
 import {Category} from "../../menubuilder/entities/Category";
-import {PgDishRepository} from "../../menubuilder/external/PgDishRepository";
 import {CreateDish} from "../../menubuilder/services/CreateDish";
 
 initializeDB().then(() => {
     const args = process.argv.slice(2);
     const categoryName = args[0];
     const dishName = args[1];
-    const createDish = new CreateDish(new PgDishRepository());
+    const createDish = Container.get(CreateDish);
 
     try {
         createDish.execute(

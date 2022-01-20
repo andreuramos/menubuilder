@@ -1,6 +1,7 @@
 import {Menu} from "../entities/Menu";
 import {PgDishRepository} from "../external/PgDishRepository";
 import {PgMenuRepository} from "../external/PgMenuRepository";
+import {IMenuRepository} from "../interfaces/IMenuRepository";
 import {GetMenu} from "./GetMenu";
 import {MenuFactory} from "./MenuFactory";
 import {WeekCalculator} from "./WeekCalculator";
@@ -11,10 +12,10 @@ export class BuildMenu
     private menuRepository;
     private getMenu;
 
-    constructor() {
-        this.menuFactory = new MenuFactory(new PgDishRepository(), new WeekCalculator());
-        this.menuRepository = new PgMenuRepository();
-        this.getMenu = new GetMenu(new WeekCalculator(), new PgMenuRepository());
+    constructor(menuFactory: MenuFactory, menuRepository: IMenuRepository, getMenu: GetMenu) {
+        this.menuFactory = menuFactory;
+        this.menuRepository = menuRepository;
+        this.getMenu = getMenu;
     }
 
     public async execute(): Promise<Menu>
