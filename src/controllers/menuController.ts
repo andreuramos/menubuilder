@@ -20,7 +20,7 @@ export class MenuController {
     private getMenu;
 
     constructor() {
-        this.buildMenu = new BuildMenu();
+        this.buildMenu = Container.get(BuildMenu);
         this.getMenu = Container.get(GetMenu);
     }
 

@@ -1,6 +1,7 @@
 import {Category} from "../entities/Category";
 import {PgDishRepository} from "../external/PgDishRepository";
 import {PgMenuRepository} from "../external/PgMenuRepository";
+import {BuildMenu} from "../services/BuildMenu";
 import {CreateDish} from "../services/CreateDish";
 import {GetMenu} from "../services/GetMenu";
 import {WeekCalculator} from "../services/WeekCalculator";
@@ -22,6 +23,7 @@ export class Container
         const services = {
             CreateDish: new CreateDish(new PgDishRepository()),
             GetMenu: new GetMenu(new WeekCalculator(), new PgMenuRepository()),
+            BuildMenu: new BuildMenu(),
         };
         container.setServices(services);
         this.instance = container;
