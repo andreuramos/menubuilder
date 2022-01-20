@@ -1,6 +1,7 @@
 import {Category} from "../entities/Category";
 import {PgDishRepository} from "../external/PgDishRepository";
 import {CreateDish} from "../services/CreateDish";
+import {GetMenu} from "../services/GetMenu";
 
 export class Container
 {
@@ -18,6 +19,7 @@ export class Container
         const container = new this();
         const services = {
             CreateDish: new CreateDish(new PgDishRepository()),
+            GetMenu: new GetMenu(),
         };
         container.setServices(services);
         this.instance = container;
@@ -29,7 +31,6 @@ export class Container
             console.log("Not initialized motherfucker");
         }
         const key = requestedClass.name;
-        console.log("Retrieving " + key + " from services", this.instance.services, this.instance.services[key]);
         this.instance.services[key].execute("hola", new Category("carne"));
         return this.instance.services[key];
     }

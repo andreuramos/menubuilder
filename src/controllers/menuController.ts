@@ -1,4 +1,5 @@
 import express from "express";
+import {Container} from "../menubuilder/application/Container";
 import {PgMenuRepository} from "../menubuilder/external/PgMenuRepository";
 import {BuildMenu} from "../menubuilder/services/BuildMenu";
 import {GetMenu} from "../menubuilder/services/GetMenu";
@@ -20,7 +21,7 @@ export class MenuController {
 
     constructor() {
         this.buildMenu = new BuildMenu();
-        this.getMenu = new GetMenu();
+        this.getMenu = Container.get(GetMenu);
     }
 
     public async build(req: express.Request, res: express.Response) {
