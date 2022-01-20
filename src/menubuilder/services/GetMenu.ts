@@ -1,5 +1,4 @@
 import {Menu} from "../entities/Menu";
-import {PgMenuRepository} from "../external/PgMenuRepository";
 import {IMenuRepository} from "../interfaces/IMenuRepository";
 import {WeekCalculator} from "./WeekCalculator";
 

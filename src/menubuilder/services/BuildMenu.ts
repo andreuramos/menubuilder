@@ -1,10 +1,7 @@
 import {Menu} from "../entities/Menu";
-import {PgDishRepository} from "../external/PgDishRepository";
-import {PgMenuRepository} from "../external/PgMenuRepository";
 import {IMenuRepository} from "../interfaces/IMenuRepository";
 import {GetMenu} from "./GetMenu";
 import {MenuFactory} from "./MenuFactory";
-import {WeekCalculator} from "./WeekCalculator";
 
 export class BuildMenu
 {
