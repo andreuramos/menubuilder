@@ -3,6 +3,7 @@ import {PgDishRepository} from "../menubuilder/external/PgDishRepository";
 import {PgMenuRepository} from "../menubuilder/external/PgMenuRepository";
 import {GetMenu} from "../menubuilder/services/GetMenu";
 import {ReplaceDish} from "../menubuilder/services/ReplaceDish";
+import {WeekCalculator} from "../menubuilder/services/WeekCalculator";
 
 export class ReplaceDishController
 {
@@ -21,7 +22,7 @@ export class ReplaceDishController
     public constructor()
     {
         this.replaceDish = new ReplaceDish(
-            new GetMenu(),
+            new GetMenu(new WeekCalculator(), new PgMenuRepository()),
             new PgDishRepository(),
             new PgMenuRepository(),
         );

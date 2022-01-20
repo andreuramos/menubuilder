@@ -1,14 +1,15 @@
 import {Menu} from "../entities/Menu";
 import {PgMenuRepository} from "../external/PgMenuRepository";
+import {IMenuRepository} from "../interfaces/IMenuRepository";
 import {WeekCalculator} from "./WeekCalculator";
 
 export class GetMenu {
     private menuRepository;
     private weekCalculator;
 
-    public constructor() {
-        this.menuRepository = new PgMenuRepository();
-        this.weekCalculator = new WeekCalculator();
+    public constructor(weekCalculator: WeekCalculator, menuRepository: IMenuRepository) {
+        this.weekCalculator = weekCalculator;
+        this.menuRepository = menuRepository;
     }
 
     public async execute(): Promise<Menu>

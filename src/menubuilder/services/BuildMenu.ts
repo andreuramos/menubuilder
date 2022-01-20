@@ -14,7 +14,7 @@ export class BuildMenu
     constructor() {
         this.menuFactory = new MenuFactory(new PgDishRepository(), new WeekCalculator());
         this.menuRepository = new PgMenuRepository();
-        this.getMenu = new GetMenu();
+        this.getMenu = new GetMenu(new WeekCalculator(), new PgMenuRepository());
     }
 
     public async execute(): Promise<Menu>
