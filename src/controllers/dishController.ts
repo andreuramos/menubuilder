@@ -1,6 +1,6 @@
 import express from "express";
+import {Container} from "../menubuilder/application/Container";
 import {Category} from "../menubuilder/entities/Category";
-import {PgDishRepository} from "../menubuilder/external/PgDishRepository";
 import {CreateDish} from "../menubuilder/services/CreateDish";
 
 export class DishController {
@@ -16,7 +16,7 @@ export class DishController {
     private createDish;
 
     constructor() {
-        this.createDish = new CreateDish(new PgDishRepository());
+        this.createDish = Container.get(CreateDish);
     }
 
     public async add(req: express.Request, res: express.Response) {

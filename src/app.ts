@@ -4,8 +4,11 @@ import {DishController} from "./controllers/dishController";
 import { MenuController } from "./controllers/menuController";
 import {ReplaceDishController} from "./controllers/replaceDishController";
 import {initializeDB} from "./database/db";
+import {Container} from "./menubuilder/application/Container";
 const app = express();
 const port = 3000;
+
+Container.build();
 
 app.use(bodyParser.urlencoded({ extended: true}));
 
