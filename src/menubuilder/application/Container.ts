@@ -5,6 +5,7 @@ import {BuildMenu} from "../services/BuildMenu";
 import {CreateDish} from "../services/CreateDish";
 import {GetMenu} from "../services/GetMenu";
 import {MenuFactory} from "../services/MenuFactory";
+import {ReplaceDish} from "../services/ReplaceDish";
 import {WeekCalculator} from "../services/WeekCalculator";
 
 export class Container
@@ -21,6 +22,9 @@ export class Container
     public static build()
     {
         const container = new this();
+        // TODO: place this horrifying blasphemy into config file and reuse instances ffs
+        // PS: at least all the instanciation is done here and services
+        // are now testable
         const services = {
             IMenuRepository: new PgMenuRepository(),
             IDishRepository: new PgDishRepository(),
@@ -30,6 +34,11 @@ export class Container
                 new MenuFactory(new PgDishRepository(), new WeekCalculator()),
                 new PgMenuRepository(),
                 new GetMenu(new WeekCalculator(), new PgMenuRepository()),
+            ),
+            ReplaceDish: new ReplaceDish(
+                new GetMenu(new WeekCalculator(), new PgMenuRepository()),
+                new PgDishRepository(),
+                new PgMenuRepository(),
             ),
         };
         container.setServices(services);

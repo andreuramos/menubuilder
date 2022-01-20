@@ -1,4 +1,5 @@
 import express from "express";
+import {Container} from "../menubuilder/application/Container";
 import {PgDishRepository} from "../menubuilder/external/PgDishRepository";
 import {PgMenuRepository} from "../menubuilder/external/PgMenuRepository";
 import {GetMenu} from "../menubuilder/services/GetMenu";
@@ -21,11 +22,7 @@ export class ReplaceDishController
 
     public constructor()
     {
-        this.replaceDish = new ReplaceDish(
-            new GetMenu(new WeekCalculator(), new PgMenuRepository()),
-            new PgDishRepository(),
-            new PgMenuRepository(),
-        );
+        this.replaceDish = Container.get(ReplaceDish)
     }
 
     public async execute(req: express.Request, res: express.Response)
