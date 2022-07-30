@@ -1,8 +1,8 @@
-import {Category} from "../entities/Category";
 import {PgDishRepository} from "../external/PgDishRepository";
 import {PgMenuRepository} from "../external/PgMenuRepository";
 import {BuildMenu} from "../services/BuildMenu";
 import {CreateDish} from "../services/CreateDish";
+import {GetDishes} from "../services/GetDishes";
 import {GetMenu} from "../services/GetMenu";
 import {MenuFactory} from "../services/MenuFactory";
 import {ReplaceDish} from "../services/ReplaceDish";
@@ -40,6 +40,7 @@ export class Container
                 new PgDishRepository(),
                 new PgMenuRepository(),
             ),
+            GetDishes: new GetDishes(new PgDishRepository()),
         };
         container.setServices(services);
         this.instance = container;
@@ -51,7 +52,7 @@ export class Container
             console.log("Not initialized motherfucker");
         }
         const key = requestedClass.name;
-        this.instance.services[key].execute("hola", new Category("carne"));
+        //this.instance.services[key].execute("hola", new Category("carne"));
         return this.instance.services[key];
     }
 

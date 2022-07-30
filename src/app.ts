@@ -29,6 +29,10 @@ app.post("/dish", (req: express.Request, res: express.Response) => {
     DishController.getInstance().add(req, res);
 });
 
+app.get("/dish", (req: express.Request, res: express.Response) => {
+    DishController.getInstance().get(req, res);
+});
+
 app.listen(port, () => {
     initializeDB();
     // tslint:disable-next-line:no-console

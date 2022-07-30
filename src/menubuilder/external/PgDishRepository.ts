@@ -46,4 +46,15 @@ export class PgDishRepository implements IDishRepository
         await getConnection().getRepository(Dishes)
             .insert(dishData);
     }
+
+    public async getAll(): Promise<Dish[]> {
+        const dishes = await getConnection()
+            .getRepository(Dishes)
+            .createQueryBuilder("dish")
+            .getMany();
+
+        return dishes.map( (dish) => {
+            return PgDishRepository.ormToEntity(dish);
+        });
+    }
 }
