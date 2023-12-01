@@ -50,6 +50,7 @@ export class Container
     public static get(requestedClass) {
         if (this.instance == null) {
             console.log("Not initialized motherfucker");
+            this.getInstance();
         }
         const key = requestedClass.name;
         //this.instance.services[key].execute("hola", new Category("carne"));
