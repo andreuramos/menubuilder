@@ -1,0 +1,107 @@
+{
+	"info": {
+		"_postman_id": "359248d8-f29c-4296-b681-7d1460265551",
+		"name": "menubuilder",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "7790011"
+	},
+	"item": [
+		{
+			"name": "Get Menu",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "Generate Menu",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/menu",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"menu"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Replace Dish",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/menu/replace/tuesday",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"menu",
+						"replace",
+						"tuesday"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Dish",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Bocata Calamares\",\n    \"category\": \"carne\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/dish",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"dish"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "localhost:3000",
+			"type": "string"
+		}
+	]
+}
